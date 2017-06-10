@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   has_many :loan_books
+  has_many :users, through: :loan_books
 
   validates :author,
             :title,

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :books, through: :loan_books
   has_many :loan_books
+  has_many :books, through: :loan_books
 
   validates :email,
             :firstname,
