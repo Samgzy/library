@@ -11,5 +11,6 @@ class Book < ApplicationRecord
 
   scope :search_by_title, -> (title) { where("lower(title) LIKE :title", title: "%#{title.downcase}%") }
   scope :availables, -> { where status: "available" }
+  scope :borrowed, -> { where.not status: "available" }
 
 end

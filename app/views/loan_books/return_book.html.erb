@@ -1,0 +1,26 @@
+<% search_params = !(params[:q].nil? or params[:q].empty?) %>
+
+<form class="form-group-sm form-inline" id="book-search" action="" accept-charset="UTF-8" method="get">
+  <div class="input-group form-group-sm">
+    <input name="utf8" type="hidden" value="✓">
+    <input type="search" name="q" id="search" placeholder="Search book by title" class="input form-control" value="<%= search_params ? params[:q] : '' %>">
+    <span class="input-group-btn">
+      <% if search_params %>
+        <a href="<%= url_for(params.permit(:q, :utf8).except(:q)) %>" class="btn btn-primary btn-sm"><i class="fa fa-times"></i></a>
+      <% else %>
+        <button type="submit" form="book-search" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+      <% end %>
+    </span>
+  </div>
+</form>
+
+<% if search_params %>
+  <% if @book.nil?%>
+    <span>No result found</span>
+  <% else %>
+    <span>Click on the book to make the return:</span>
+    <%= link_to @book.title, loan_book_path(@loan_book.id),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% end %>

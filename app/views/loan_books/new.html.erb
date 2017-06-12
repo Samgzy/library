@@ -19,16 +19,15 @@
   <span>Vous avez sélectionné l'utilisateur :</span>
   <%= link_to @user.first, user_path(@user.first) %>
   <div id="book_form">
-    <%= simple_form_for @loan_book, id: "loan_form"  do |form| %>
-      <%= form.error_notification %>
-      <%= form.input :user_id, as: :hidden, input_html: { value: @user.first.id } %>
-
-      <% unless @books.nil? %>
-        <span>All books are currently borrowed</span>
-      <% else %>
-        <%= form.collection_select :book_id, @books , :id, :title , include_blank: "Choose a book" %>
+    <% if @books.nil? %>
+      <span>All books are currently borrowed</span>
+    <% else %>
+      <%= simple_form_for @loan_book, id: "loan_form"  do |form| %>
+        <%= form.error_notification %>
+        <%= form.input :user_id, as: :hidden, input_html: { value: @user.first.id } %>
+        <%= form.collection_select :book_id, @books , :id, :title , include_blank: "Select a book" %>
+        <%= form.button :submit %>
       <% end %>
-      <%= form.button :submit %>
     <% end %>
   </div>
 <% end %>

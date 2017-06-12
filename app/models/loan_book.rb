@@ -7,6 +7,7 @@ class LoanBook < ApplicationRecord
   after_save :borrow_book
   after_destroy :return_book
 
+  scope :search_by_book, -> (book_id) { where(book_id: book_id) }
 
   def borrow_book
     book.update_attributes status: "borrowed"
