@@ -1,8 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <%= @user %>
+<% if @user.avatar.present? %>
+  <%= image_tag @user.avatar.url %>
+<% end %>
 
 <% @user.loan_books.each do |loan| %>
   <%= link_to loan.book.title, book_path(loan.book) %>
 <% end %>
-<%= link_to 'Destroy', @user,  method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning btn-xs' %>
+<%= link_to 'Destroy', @user,
+                       method: :delete,
+                       data: { confirm: 'Are you sure?' },
+                       class: 'btn btn-danger btn-xs' %>

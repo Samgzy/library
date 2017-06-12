@@ -16,11 +16,12 @@
 
 <% if search_params %>
   <% if @book.nil?%>
-    <span>No result found</span>
+    <span>This book doesn't exist or is still available</span>
   <% else %>
     <span>Click on the book to make the return:</span>
     <%= link_to @book.title, loan_book_path(@loan_book.id),
                             method: :delete,
-                            data: { confirm: 'Are you sure?' } %>
+                            data: { confirm: 'Are you sure?' },
+                            class: 'btn btn-danger btn-xs' %>
   <% end %>
 <% end %>

@@ -4,4 +4,6 @@
 <% @book.loan_books.each do |loan| %>
   <%= link_to loan.user, user_path(loan.user) %>
 <% end %>
-<%= link_to 'Destroy', @book,  method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', @book,
+                       method: :delete, data: { confirm: 'Are you sure?' },
+                       class: 'btn btn-danger btn-xs' %>
