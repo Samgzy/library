@@ -1,0 +1,11 @@
+<% @books.each do |book| %>
+  <%= link_to book.title, book_path(book) %>
+  <%= book.author %>
+  <%= book.status %>
+
+  <% unless book.loan_books.nil? %>
+    <% book.loan_books.each do |loan_book| %>
+      <%= link_to loan_book.user, user_path(loan_book.user) %>
+    <% end %>
+  <% end %>
+<% end %>

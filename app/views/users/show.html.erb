@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<%= @user %>
+
+<% @user.loan_books.each do |loan| %>
+  <%= link_to loan.book.title, book_path(loan.book) %>
+<% end %>
+<%= link_to 'Destroy', @user,  method: :delete, data: { confirm: 'Are you sure?' } %>
