@@ -1,9 +1,16 @@
-<%= @book.summary %>
-<%= @book.status %>
+<h1><%= @book.title %></h1>
+<p><%= @book.summary %></p>
 
-<% @book.loan_books.each do |loan| %>
-  <%= link_to loan.user, user_path(loan.user) %>
+<p>Status : <%= @book.status %></p>
+
+<% if @book.users.any? %>
+<p>borrowed by :</p>
+  <% @book.users.each do |loan| %>
+    <%= link_to loan, user_path(loan) %>
+  <% end %>
 <% end %>
-<%= link_to 'Destroy', @book,
-                       method: :delete, data: { confirm: 'Are you sure?' },
-                       class: 'btn btn-danger btn-xs' %>
+<div class="links">
+  <%= link_to 'Delete book', @book,
+                             method: :delete, data: { confirm: 'Are you sure?' },
+                             class: 'btn btn-danger btn-xs' %>
+</div>

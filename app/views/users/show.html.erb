@@ -1,14 +1,20 @@
-<div> <%= @user %></div>
+<h1> <%= @user %></h1>
+
 <% if @user.avatar.present? %>
   <%= image_tag @user.avatar.url(:thumb) %>
 <% end %>
-<%= @user.email %>
-<% @user.loan_books.each do |loan| %>
-  <%= link_to loan.book.title, book_path(loan.book) %>
+<p> <%= @user.email %> </p>
+<% if @user.books.any? %>
+  <p>User currently borrow:</p>
+  <% @user.books.each do |loan| %>
+    <%= link_to loan.title, book_path(loan) %>
+  <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning btn-xs' %>
-<%= link_to 'Destroy', @user,
-                       method: :delete,
-                       data: { confirm: 'Are you sure?' },
-                       class: 'btn btn-danger btn-xs' %>
+<div class="links">
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning btn-xs' %>
+  <%= link_to 'Destroy', @user,
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' },
+                         class: 'btn btn-danger btn-xs' %>
+</div>
