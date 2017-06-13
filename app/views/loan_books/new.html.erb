@@ -17,19 +17,19 @@
     <% if @user.empty? %>
       <span>User not found</span>
     <% else %>
-      <span><%= link_to @user.first, user_path(@user.first) %></span>
-      <div id="book_form">
-        <% if @books.nil? %>
-          <span>All books are currently borrowed</span>
-        <% else %>
-          <%= simple_form_for @loan_book, id: "loan_form"  do |form| %>
-            <%= form.error_notification %>
-            <%= form.input :user_id, as: :hidden, input_html: { value: @user.first.id } %>
-            <%= form.collection_select :book_id, @books , :id, :title , include_blank: "Select a book" %>
+      <p>User selected : <%= link_to @user.first, user_path(@user.first) %></p>
+      <% if @books.nil? %>
+        <span>All books are currently borrowed</span>
+      <% else %>
+        <%= simple_form_for @loan_book, id: "loan_form"  do |form| %>
+          <%= form.error_notification %>
+          <%= form.input :user_id, as: :hidden, input_html: { value: @user.first.id } %>
+          <%= form.collection_select :book_id, @books , :id, :title , include_blank: "Select a book" %>
+          <div>
             <%= form.button :submit, "Validate", class: 'btn btn-default' %>
-          <% end %>
+          </div>
         <% end %>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>

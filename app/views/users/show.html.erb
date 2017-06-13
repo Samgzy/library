@@ -6,14 +6,16 @@
 <p> <%= @user.email %> </p>
 <% if @user.books.any? %>
   <p>User currently borrow:</p>
+  <ul>
   <% @user.books.each do |loan| %>
-    <%= link_to loan.title, book_path(loan) %>
+    <li> <%= link_to loan.title, book_path(loan) %></li>
   <% end %>
+  </ul>
 <% end %>
 
 <div class="links">
   <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning btn-xs' %>
-  <%= link_to 'Destroy', @user,
+  <%= link_to 'Delete user', @user,
                          method: :delete,
                          data: { confirm: 'Are you sure?' },
                          class: 'btn btn-danger btn-xs' %>

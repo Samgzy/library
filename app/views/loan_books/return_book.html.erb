@@ -18,7 +18,7 @@
     <% if @book.nil?%>
       <span>This book doesn't exist or is not borrowed</span>
     <% else %>
-      <span>Book selected : <%= link_to @book.title, book_path(@book) %></span>
+      <p>Book selected : <%= link_to @book.title, book_path(@book) %></p>
       <%= link_to "Valid return", loan_book_path(@loan_book.id),
                               method: :delete,
                               data: { confirm: 'Are you sure?' },
