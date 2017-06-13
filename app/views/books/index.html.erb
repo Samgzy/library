@@ -1,13 +1,20 @@
-<%= link_to 'Create a book', new_book_path, class: 'btn btn-default btn-xs' %>
+<div class="row">
+  <%= link_to 'Add a book', new_book_path, class: 'btn btn-success btn-xs' %>
+    <ul>
+      <% @books.each do |book| %>
+      <li>
+        <%= link_to book.title, book_path(book) %>
+        <%= book.author %>
+        <%= book.status %>
 
-<% @books.each do |book| %>
-  <%= link_to book.title, book_path(book) %>
-  <%= book.author %>
-  <%= book.status %>
-
-  <% unless book.loan_books.nil? %>
-    <% book.loan_books.each do |loan_book| %>
-      <%= link_to loan_book.user, user_path(loan_book.user) %>
-    <% end %>
-  <% end %>
-<% end %>
+        <% unless book.loan_books.nil? %>
+          <p> Currently borrowed by :
+            <% book.loan_books.each do |loan_book| %>
+              <%= link_to loan_book.user, user_path(loan_book.user) %>
+            <% end %>
+          </p>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+</div>

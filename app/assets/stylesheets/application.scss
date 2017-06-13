@@ -1,3 +1,15 @@
+// Graphical variables
+@import "config/variables";
+@import "config/bootstrap_variables";
+
+// External libraries
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import url(https://fonts.googleapis.com/css?family=Voltaire);
+
+@import "components/index";
+
+ul {
+  list-style-type: none;
+}

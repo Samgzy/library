@@ -1,0 +1,12 @@
+.alert {
+  margin: 0;
+  text-align: center;
+  color: white;
+  margin-top: -22px;
+}
+.alert-info {
+  background-color: rgba( 47, 182, 148, 0.6);
+}
+.alert-warning {
+  background: $red;
+}

@@ -1,6 +1,12 @@
-<%= simple_form_for @book do |f| %>
-  <%= f.input :title %>
-  <%= f.input :author %>
-  <%= f.input :summary %>
-  <%= f.button :submit %>
-<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for @book do |f| %>
+      <%= f.input :title, label: false , placeholder: "Title"  %>
+      <%= f.input :author, label: false , placeholder: "Author of the book" %>
+      <%= f.input :summary, label: false , placeholder: "Write a summary" %>
+      <div class="text-center">
+        <%= f.button :submit, "Validate", class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class LoanBooksController < ApplicationController
-  before_action :scope_books, only: [ :return_book ]
+  before_action :load_books, only: [ :return_book ]
 
   def new
     @users = User.all
@@ -36,7 +36,7 @@ class LoanBooksController < ApplicationController
 
   private
 
-  def scope_books
+  def load_books
     @books = Book.borrowed
   end
 

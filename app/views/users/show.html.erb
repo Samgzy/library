@@ -1,8 +1,8 @@
-<%= @user %>
+<div> <%= @user %></div>
 <% if @user.avatar.present? %>
-  <%= image_tag @user.avatar.url %>
+  <%= image_tag @user.avatar.url(:thumb) %>
 <% end %>
-
+<%= @user.email %>
 <% @user.loan_books.each do |loan| %>
   <%= link_to loan.book.title, book_path(loan.book) %>
 <% end %>

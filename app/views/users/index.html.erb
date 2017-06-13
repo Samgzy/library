@@ -1,4 +1,8 @@
-<%= link_to 'Create a user', new_user_path, class: 'btn btn-default btn-xs' %>
-<% @users.each do |user| %>
-  <%= link_to user, user_path(user) %>
-<% end %>
+<div class="row">
+  <%= link_to 'Create a user', new_user_path, class: 'btn btn-success btn-xs' %>
+  <ul>
+  <% @users.each do |user| %>
+    <li> <%= link_to user, user_path(user) %></li>
+  <% end %>
+  </ul>
+</div>

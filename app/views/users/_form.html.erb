@@ -1,7 +1,13 @@
-<%= simple_form_for @user do |f| %>
-  <%= f.input :firstname %>
-  <%= f.input :lastname %>
-  <%= f.input :email %>
-  <%= f.input :avatar, as: :file %>
-  <%= f.button :submit %>
-<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :firstname, label: false , placeholder: "firstname" %>
+      <%= f.input :lastname, label: false , placeholder: "lastname" %>
+      <%= f.input :email, label: false , placeholder: "email" %>
+      <%= f.input :avatar, as: :file, label: false %>
+      <div class="text-center">
+        <%= f.button :submit, "Validate", class: 'btn btn-default'  %>
+      </div>
+    <% end %>
+  </div>
+</div>

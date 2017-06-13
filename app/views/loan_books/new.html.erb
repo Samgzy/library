@@ -1,33 +1,35 @@
 <% search_params = !(params[:q].nil? or params[:q].empty?) %>
-
-<form class="form-group-sm form-inline" id="users-search" action="" accept-charset="UTF-8" method="get">
-  <div class="input-group form-group-sm">
-    <input name="utf8" type="hidden" value="✓">
-    <input type="search" name="q" id="search" placeholder="Search user by email" class="input form-control" value="<%= search_params ? params[:q] : '' %>">
-    <span class="input-group-btn">
-      <% if search_params %>
-        <a href="<%= url_for(params.permit(:q, :utf8).except(:q)) %>" class="btn btn-primary btn-sm"><i class="fa fa-times"></i></a>
-      <% else %>
-        <button type="submit" form="users-search" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-      <% end %>
-    </span>
-  </div>
-</form>
-
-
-<% if search_params %>
-  <span>Vous avez sélectionné l'utilisateur :</span>
-  <%= link_to @user.first, user_path(@user.first) %>
-  <div id="book_form">
-    <% if @books.nil? %>
-      <span>All books are currently borrowed</span>
+<div class="row">
+  <form class="form-group-sm form-inline" id="users-search" action="" accept-charset="UTF-8" method="get">
+    <div class="input-group form-group-sm">
+      <input name="utf8" type="hidden" value="✓">
+      <input type="search" name="q" id="search" placeholder="Search user by email" class="input form-control" value="<%= search_params ? params[:q] : '' %>">
+      <span class="input-group-btn">
+        <% if search_params %>
+          <a href="<%= url_for(params.permit(:q, :utf8).except(:q)) %>" class="btn btn-primary btn-sm"><i class="fa fa-times"></i></a>
+        <% else %>
+          <button type="submit" form="users-search" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+        <% end %>
+      </span>
+    </div>
+  </form>
+  <% if search_params %>
+    <% if @user.empty? %>
+      <span>User not found</span>
     <% else %>
-      <%= simple_form_for @loan_book, id: "loan_form"  do |form| %>
-        <%= form.error_notification %>
-        <%= form.input :user_id, as: :hidden, input_html: { value: @user.first.id } %>
-        <%= form.collection_select :book_id, @books , :id, :title , include_blank: "Select a book" %>
-        <%= form.button :submit %>
-      <% end %>
+      <span><%= link_to @user.first, user_path(@user.first) %></span>
+      <div id="book_form">
+        <% if @books.nil? %>
+          <span>All books are currently borrowed</span>
+        <% else %>
+          <%= simple_form_for @loan_book, id: "loan_form"  do |form| %>
+            <%= form.error_notification %>
+            <%= form.input :user_id, as: :hidden, input_html: { value: @user.first.id } %>
+            <%= form.collection_select :book_id, @books , :id, :title , include_blank: "Select a book" %>
+            <%= form.button :submit, "Validate", class: 'btn btn-default' %>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
